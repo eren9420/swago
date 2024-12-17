@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Swago</title>
+    <link rel="stylesheet" href="css/login.css">
+    
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <img src="images/logo2bg.png" alt="Swago Logo">
+            </a>
+            <nav class="navbar-menu">
+                <ul class="rd-navbar-nav">
+                    <li class="rd-nav-item active"><a class="rd-nav-link" href="index.html">Ana Sayfa</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="about.html">Hakkımızda</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="categories.html">Takas KATEGORİLERİ</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="contact.html">İLETİŞİM</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="login.html">GİRİŞ Yap</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="floating-text-container">
+        <div class="floating-text" id="text-container">
+            <span style="animation-delay: 0s;">Swago,</span>
+            <span style="animation-delay: 1s;">Hizmet takası için modern bir pazar yeridir.</span>
+            <span style="animation-delay: 2s;">Kolay ve hızlı ticaret için tasarlandı!</span>
+            <span style="animation-delay: 3s;">Kendi hizmetlerinizi,</span>
+            <span style="animation-delay: 4s;">başkalarının harika hizmetleriyle değiştirin.</span>
+            <span style="animation-delay: 5s;">Topluluğun bir parçası olun.</span>
+            <span style="animation-delay: 6s;">Takas kavramını yeniden tanımlıyoruz.</span>
+        </div>
+      
+    </div>
+    
+    <div class="login-container">
+        <img src="images/logo2bg.png" alt="Swago Logo">
+
+        <form id="login-form">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Şifre</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="login-button">Login</button>
+        </form>
+
+        <div class="login-footer">
+            <p>Hesabın Yok mu? <a href="register.html">Kaydol</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async (event) => {
+            event.preventDefault(); 
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('http://localhost:5001/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+    localStorage.setItem('token', data.token);
+    showSnackbar('Login successful!');
+} else {
+    showSnackbar(data.message || 'Login failed'); 
+}
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while trying to log in.');
+            }
+        });
+
+        const textContainer = document.getElementById('text-container');
+const floatingText = document.querySelectorAll('.floating-text span');
+
+let currentIndex = 0;
+
+function cycleText() {
+    floatingText.forEach((text) => {
+        text.style.opacity = '0';
+    });
+
+    floatingText[currentIndex].style.opacity = '1';
+    floatingText[currentIndex].style.animation = 'floatInOut 4s ease-in-out';
+
+    currentIndex = (currentIndex + 1) % floatingText.length;
+
+    setTimeout(cycleText, 4000); 
+}
+
+// Döngüyü başlat
+cycleText();
+
+
+
+function showSnackbar(message, isSuccess) {
+    const snackbar = document.createElement('div');
+    snackbar.className = 'snackbar';
+    snackbar.textContent = message;
+    document.body.appendChild(snackbar);
+
+    snackbar.classList.add('show');
+
+    setTimeout(() => {
+        snackbar.classList.remove('show');
+        document.body.removeChild(snackbar);
+
+        if (isSuccess) {
+            window.location.href = 'dashboard.html';
+        }
+    }, 3000);
+}
+
+document.getElementById('login-form').addEventListener('submit', async (event) => {
+    event.preventDefault(); 
+    
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    try {
+        const response = await fetch('http://localhost:5001/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('userId', data.user._id);
+
+            showSnackbar('Giriş Başarılı!', true); 
+        } else {
+            showSnackbar(data.message || 'Login failed', false);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        showSnackbar('An error occurred while trying to log in.', false);
+    }
+});
+
+
+    </script>
+
+</body>
+</html>

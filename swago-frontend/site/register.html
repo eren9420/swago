@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Swago</title>
+    <link rel="stylesheet" href="css/register.css">
+    
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <img src="images/logo2bg.png" alt="Swago Logo">
+            </a>
+            <nav class="navbar-menu">
+                <ul class="rd-navbar-nav">
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="index.html">Ana Sayfa</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="about.html">Hakkımızda</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="categories.html">Takas KATEGORİLERİ</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="contact.html">İLETİŞİM</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="login.html">GİRİŞ Yap</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="register-container">
+        <img src="images/logo2bg.png" alt="Swago Logo">
+
+        <form id="register-form" method="POST" action="http://localhost:5001/api/auth/register">
+            <div class="form-group">
+                <label for="fullname">Ad Soyad</label>
+                <input type="text" id="fullname" name="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+            </div>
+            <div class="form-group">
+                <label for="birthdate">Doğum Tarihi</label>
+                <input type="date" id="birthdate" name="dob" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Şifre</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+                <label for="skills">Yetenekler</label>
+                <div id="skills-container" class="skills-container">
+                    <div class="skill-option" data-value="Cleaning">Temizlik</div>
+                    <div class="skill-option" data-value="Plumbing">Tesisat</div>
+                    <div class="skill-option" data-value="Gardening">Bahçe İşleri</div>
+                    <div class="skill-option" data-value="Cooking">Yemek</div>
+                    <div class="skill-option" data-value="Tutoring">Özel Ders</div>
+                    <div class="skill-option" data-value="Babysitting">Çocuk Bakımı</div>
+                    <div class="skill-option" data-value="Car Repair">Araba Tamiri</div>
+                    <div class="skill-option" data-value="Pet Sitting">Evcil Hayvan Bakımı</div>
+                    <div class="skill-option" data-value="IT Support">IT Desteği</div>
+                    <div class="skill-option" data-value="Painting">Boyama</div>
+                    <div class="skill-option" data-value="Other">Diğer</div>
+                </div>
+            </div>
+            
+            <button type="submit" class="register-button">Register</button>
+        </form>
+        <div class="register-footer">
+            <p>Bir hesabın var mı? <a href="login.html" class="login-redirect">Giriş Yap</a></p>
+        </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const skillOptions = document.querySelectorAll('.skill-option');
+        const maxSelections = 3;
+
+        skillOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                if (option.classList.contains('selected')) {
+                    option.classList.remove('selected');
+                } else {
+                    const selectedCount = document.querySelectorAll('.skill-option.selected').length;
+                    if (selectedCount < maxSelections) {
+                        option.classList.add('selected');
+                    } else {
+                        showSnackbar('Please select up to 3 skills.');
+                    }
+                }
+            });
+        });
+
+        document.getElementById('register-form').addEventListener('submit', async (event) => {
+            event.preventDefault(); 
+
+            const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const birthdate = document.getElementById('birthdate').value;
+            const password = document.getElementById('password').value;
+
+            const selectedSkills = Array.from(document.querySelectorAll('.skill-option.selected'))
+                .map(option => option.getAttribute('data-value'));
+
+            try {
+                const response = await fetch('http://localhost:5001/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: fullname,
+                        email,
+                        dob: birthdate,
+                        password,
+                        skills: selectedSkills,
+                        currentTrades: [],
+                    }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+            showSnackbar('Registration successful! Redirecting to login...');
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 2000); 
+        } else {
+            showSnackbar(data.message || 'Registration failed');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        showSnackbar('An error occurred while trying to register.');
+    }
+});
+
+
+
+    });
+
+    function showSnackbar(message) {
+    const snackbar = document.createElement('div');
+    snackbar.className = 'snackbar';
+    snackbar.textContent = message;
+    document.body.appendChild(snackbar);
+
+    snackbar.classList.add('show');
+
+    setTimeout(() => {
+        snackbar.classList.remove('show');
+        document.body.removeChild(snackbar);
+    }, 3000);
+}
+    </script>
+
+</body>
+</html>

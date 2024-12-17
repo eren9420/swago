@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="en">
+  <head>
+    <title>Kategoriler</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="images/logo2bg.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Work+Sans:300,400,500,700%7CZilla+Slab:300,400,500,700,700i%7CGloria+Hallelujah">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+      .category-section {
+        margin-bottom: 50px;
+      }
+      .category-section img {
+        border-radius: 10px;
+        object-fit: cover;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        width: 100%;
+        max-width: 500px;
+        height: 300px;
+      }
+      .category-section img:hover {
+        transform: scale(1.05);
+      }
+      .category-section h3 {
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 15px;
+      }
+      .category-section p {
+        font-family: 'Zilla Slab', serif;
+        font-size: 1.1em;
+        color: #555;
+      }
+      .category-section a.button {
+  margin-top: 15px;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1em;
+  color: #fff !important;
+  text-align: center;
+  background: linear-gradient(45deg, #f093fb, #f5576c);
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.category-section a.button:hover {
+  background: linear-gradient(45deg, #f5576c, #f093fb);
+  transform: scale(1.05); 
+  color: #fff !important; 
+}
+
+
+      .category-section:nth-child(even) .col-md-6 {
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="preloader">
+      <div class="preloader-logo"><a class="brand" href="index.html"><img class="brand-logo-dark" src="images/logo2bg.png" alt="" width="100" height="50"/></a></div>
+      <div class="preloader-body">
+        <div class="cssload-container">
+          <div class="cssload-speeding-wheel"></div>
+        </div>
+      </div>
+    </div>
+    <div class="page">
+      <header class="page-header">
+        <div class="rd-navbar-wrap">
+          <nav class="rd-navbar rd-navbar-classic" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static">
+            <div class="rd-navbar-main-outer">
+              <div class="rd-navbar-main">
+                <div class="rd-navbar-panel">
+                  <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+                  <div class="rd-navbar-brand"><a class="brand" href="index.html"><img class="brand-logo-dark" src="images/logo2bg.png" alt="" width="100" height="50"/></a></div>
+                </div>
+                <div class="rd-navbar-nav-wrap">
+                  <ul class="rd-navbar-nav">
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="index.html">Ana Sayfa</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="about.html">Hakkımızda</a></li>
+                    <li class="rd-nav-item active"><a class="rd-nav-link" href="categories.html">TAKAS KATEGORİLERİ</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="contact.html">İLETİŞİM</a></li>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="login.html">GİRİŞ YAP</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <section class="section section-lg bg-default">
+        <div class="container">
+          <h2 class="text-center mb-5">Takas Kategorileri</h2>
+          <div class="row row-50 align-items-center category-section">
+            <div class="col-md-6 text-center">
+              <img src="images/temizl.jpg" alt="Temizlik" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+              <h3>Temizlik</h3>
+              <p>Ev ve ofis temizliği için hizmetler takas edin.</p>
+              <a class="button button-lg button-primary-gradient wow fadeIn" data-wow-delay=".2s" href="login.html"><span>Keşfet</span></a>
+            </div>
+          </div>
+          <div class="row row-50 align-items-center category-section flex-md-row-reverse">
+            <div class="col-md-6 text-center">
+              <img src="images/teknikdestek.jpeg" alt="Tamir ve Bakım" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+              <h3>Tamir ve Bakım</h3>
+              <p>Eşyalarınızı onarmak ve korumak için hizmetler.</p>
+              <a class="button button-lg button-primary-gradient wow fadeIn" data-wow-delay=".2s" href="login.html"><span>Keşfet</span></a>
+            </div>
+          </div>
+          <div class="row row-50 align-items-center category-section">
+            <div class="col-md-6 text-center">
+              <img src="images/food.jpg" alt="Yemek Yapma" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+              <h3>Yemek Yapma</h3>
+              <p>Lezzetli yemekler takas edin veya ev yemekleri hizmeti sunun.</p>
+              <a class="button button-lg button-primary-gradient wow fadeIn" data-wow-delay=".2s" href="login.html"><span>Keşfet</span></a>
+            </div>
+          </div>
+          <div class="row row-50 align-items-center category-section flex-md-row-reverse">
+            <div class="col-md-6 text-center">
+              <img src="images/gardening.jpg" alt="Bahçe Bakımı" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+              <h3>Bahçe Bakımı</h3>
+              <p>Bahçeniz için bakım ve düzenleme hizmetleri takas edin.</p>
+              <a class="button button-lg button-primary-gradient wow fadeIn" data-wow-delay=".2s" href="login.html"><span>Keşfet</span></a>
+            </div>
+          </div>
+          <div class="row row-50 align-items-center category-section">
+            <div class="col-md-6 text-center">
+              <img src="images/elsanatları.jpg" alt="El Sanatları" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+              <h3>El Sanatları</h3>
+              <p>El işleri ve zanaatlarınızı takas ederek fark yaratın.</p>
+              <a class="button button-lg button-primary-gradient wow fadeIn" data-wow-delay=".2s" href="login.html"><span>Keşfet</span></a>
+            </div>
+          </div>
+          <div class="row row-50 align-items-center category-section flex-md-row-reverse">
+            <div class="col-md-6 text-center">
+              <img src="images/yazılım.png" alt="Yazılım" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+              <h3>Yazılım</h3>
+              <p>Yazılım projeleri ve kod paylaşımı ile teknoloji dünyasına katkı sağlayın.</p>
+              <a class="button button-lg button-primary-gradient wow fadeIn" data-wow-delay=".2s" href="login.html"><span>Keşfet</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="section footer-classic bg-gray-950">
+        <div class="footer-classic-main">
+          <div class="container">
+            <div class="row row-30">
+              <div class="col-md-4">
+                <h3>Hakkımızda</h3>
+                <p>SWAGO, kaynak israfını önlemek ve çevresel sürdürülebilirliğe katkı sağlamak için geliştirilmiş bir platformdur.</p>
+              </div>
+              <div class="col-md-4">
+                <h3>İletişim Bilgileri</h3>
+                <ul class="contact-list">
+                  <li><span>Adres:</span> Galatasaray Üniversitesi, İstanbul</li>
+                  <li><span>Telefon:</span> +90 212 123 45 67</li>
+                  <li><span>E-posta:</span> <a href="mailto:info@swago.com">info@swago.com</a></li>
+                </ul>
+              </div>
+              <div class="col-md-4">
+                <h3>Sosyal Medya</h3>
+                <ul class="social-media-list">
+                  <li><a href="#" class="icon mdi mdi-facebook" aria-label="Facebook"></a></li>
+                  <li><a href="#" class="icon mdi mdi-twitter" aria-label="Twitter"></a></li>
+                  <li><a href="#" class="icon mdi mdi-instagram" aria-label="Instagram"></a></li>
+                  <li><a href="#" class="icon mdi mdi-linkedin" aria-label="LinkedIn"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
